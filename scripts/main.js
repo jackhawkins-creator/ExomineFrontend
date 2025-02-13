@@ -1,5 +1,5 @@
 
-const container = document.querySelector("")
+const container = document.querySelector("container")
 
 const render = async () => {
 
@@ -15,13 +15,6 @@ const render = async () => {
 
             </section>
 
-            <section class="minerals_options">
-                
-            </section>
-
-            <section class="colonyMinerals">
-                
-            </section>
         </article>
 
         <article class="cart">
@@ -38,3 +31,4 @@ const render = async () => {
     `
 container.innerHTML = exomineHTML
 }
+render()
