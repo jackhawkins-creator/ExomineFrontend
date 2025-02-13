@@ -1,4 +1,165 @@
 {
-    "minerals":[],
-    "facilityMinerals": []
+    "governors": [
+        {
+            "id": 1,
+            "name": "Edward Wong Hau Pepelu Tivrusky IV",
+            "active": true,
+            "colonyId": 5
+        },
+        {
+            "id": 2,
+            "name": "Sivaji Ganesan",
+            "active": false,
+            "colonyId": 3
+        },
+        {
+            "id": 3,
+            "name": "Zhaan",
+            "active": true,
+            "colonyId": 2
+        },
+        {
+            "id": 4,
+            "name": "Kane",
+            "active": true,
+            "colonyId": 1
+        },
+        {
+            "id": 5,
+            "name": "Bester",
+            "active": false,
+            "colonyId": 4
+        }
+    ],
+    "colonies": [
+        {
+            "id": 1,
+            "name": "Europa"
+        },
+        {
+            "id": 2,
+            "name": "Tatooine"
+        },
+        {
+            "id": 3,
+            "name": "Xandar"
+        },
+        {
+            "id": 4,
+            "name": "Arrakis"
+        },
+        {
+            "id": 5,
+            "name": "Oklahoma"
+        }
+    ],
+    "colonyMinerals": [
+        {
+            "id": 1,
+            "colonyId": 4,
+            "mineralId": 3
+        },
+        {
+            "id": 2,
+            "colonyId": 5,
+            "mineralId": 5
+        },
+        {
+            "id": 3,
+            "colonyId": 1,
+            "mineralId": 1
+        },
+        {
+            "id": 4,
+            "colonyId": 2,
+            "mineralId": 4
+        },
+        {
+            "id": 5,
+            "colonyId": 3,
+            "mineralId": 2
+        }
+    ],
+    "minerals": [
+        {
+            "id": 1,
+            "name": "Red Mercury",
+            "quantity": 500
+        },
+        {
+            "id": 2,
+            "name": "Kyber Crystals",
+            "quantity": 1200
+        },
+        {
+            "id": 3,
+            "name": "Unobtainium",
+            "quantity": 300
+        },
+        {
+            "id": 4,
+            "name": "Spice Melange",
+            "quantity": 700
+        },
+        {
+            "id": 5,
+            "name": "Vibranium",
+            "quantity": 950
+        }
+    ],
+    "facilityMinerals": [
+        {
+            "id": 1,
+            "mineralId": 1,
+            "facilitiesId": 3
+        },
+        {
+            "id": 2,
+            "mineralId": 4,
+            "facilitiesId": 5
+        },
+        {
+            "id": 3,
+            "mineralId": 2,
+            "facilitiesId": 1
+        },
+        {
+            "id": 4,
+            "mineralId": 3,
+            "facilitiesId": 4
+        },
+        {
+            "id": 5,
+            "mineralId": 5,
+            "facilitiesId": 2
+        }
+    ],
+    "facilities": [
+        {
+            "id": 1,
+            "name": "Ganymede",
+            "active": true
+        },
+        {
+            "id": 2,
+            "name": "The Death Star",
+            "active": false
+        },
+        {
+            "id": 3,
+            "name": "S.H.I.E.L.D. Helicarrier",
+            "active": true
+        },
+        {
+            "id": 4,
+            "name": "Imperial Star Destroyer",
+            "active": true
+        },
+        {
+            "id": 5,
+            "name": "Pandora",
+            "active": false
+        }
+    ],
+    "purchases": []
 }
