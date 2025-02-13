@@ -1,0 +1,51 @@
+title Exomine
+participant DOM
+participant Main.js
+participant Govenors.js
+participant Facilities.js
+participant Colonies.js
+participant Minerals.js
+participant Carts.js
+participant TransientState.js
+participant database.json
+
+Main.js->Govenors.js: Requests html data 
+Govenors.js->database.json: requests govenors array data
+database.json-->Govenors.js:returns govenors array data
+Main.js<--Govenors.js:Returns html data
+Govenors.js->DOM: Send changeEvent "change"
+Govenors.js<--DOM: Return changeEvent "change"
+
+
+Main.js->Facilities.js: Requests html data 
+Facilities.js->database.json: requests facilities array data
+database.json-->Facilities.js:returns facilities array data
+Main.js<--Facilities.js:Returns html data
+Facilities.js->DOM: Send changeEvent "change"
+Facilities.js<--DOM:Return changeEvent "change"
+
+
+Main.js->Colonies.js: Requests html data 
+Colonies.js->database.json: requests colonies array data
+database.json-->Colonies.js:returns colonies array data
+Main.js<--Colonies.js:Returns html data
+
+Main.js->Minerals.js: Requests html data 
+Minerals.js->database.json: requests minerals array data
+database.json-->Minerals.js:returns minerals array data
+Main.js<--Minerals.js:Returns html data
+
+Main.js->Carts.js: Requests html data 
+Carts.js->Main.js: return html button string
+Carts.js->DOM: Listen for changeEvent
+DOM-->Carts.js:Event value change
+Carts.js->Main.js:reflect change data
+Main.js->DOM: Update cart data
+DOM->Carts.js:purchase button clicked
+Carts.js->TransientState.js: Prepare purchase for POST
+TransientState.js->database.json: POST
+Main.js->DOM: Rerender Page
+
+
+
+
