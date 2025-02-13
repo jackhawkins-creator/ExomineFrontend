@@ -1,4 +1,4 @@
-
+// import { setChoice } from "./TransientState.js";
 
 export const generateFacilitiesHTML = async () => {
     try {
@@ -8,9 +8,13 @@ export const generateFacilitiesHTML = async () => {
         let html = `
         <div id="facilities-container">
             <select id="facility-select">
-                ${data.map((facility) => `
-                    <option value="${facility.id}">${facility.name}</option>
-                `).join('')}
+                ${data.map((facility) => {
+            if (facility.active) {
+                return `<option value="${facility.id}">${facility.name}</option>`;
+            } else {
+                return '';
+            }
+        }).join('')}
             </select>
         </div>`;
 
