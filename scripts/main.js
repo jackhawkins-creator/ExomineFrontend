@@ -1,18 +1,21 @@
+import { generateFacilitiesHTML } from "./Facilities.js"
+import { generateGovernorsHTML } from "./governors.js"
 
-const container = document.querySelector("container")
+const container = document.querySelector("#container")
 
 const render = async () => {
-
+    const facilitiesHTML = await generateFacilitiesHTML()
+    const governorsHTML = await generateGovernorsHTML()
     const exomineHTML = `
     <h1>Solar System Marketplace</h1>
 
         <article class="choices">
             <section class="govenors_options">
-
+                ${governorsHTML}
             </section>
 
             <section class="facilities_options">
-
+                ${facilitiesHTML}
             </section>
 
         </article>
