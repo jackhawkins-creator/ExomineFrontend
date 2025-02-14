@@ -13,17 +13,12 @@ Main.js->Govenors.js: Requests html data
 Govenors.js->database.json: requests govenors array data
 database.json-->Govenors.js:returns govenors array data
 Main.js<--Govenors.js:Returns html data
-Govenors.js->DOM: Send changeEvent "change"
-Govenors.js<--DOM: Return changeEvent "change"
 
 
 Main.js->Facilities.js: Requests html data 
 Facilities.js->database.json: requests facilities array data
 database.json-->Facilities.js:returns facilities array data
 Main.js<--Facilities.js:Returns html data
-Facilities.js->DOM: Send changeEvent "change"
-Facilities.js<--DOM:Return changeEvent "change"
-
 
 Main.js->Colonies.js: Requests html data 
 Colonies.js->database.json: requests colonies array data
@@ -37,15 +32,24 @@ Main.js<--Minerals.js:Returns html data
 
 Main.js->Carts.js: Requests html data 
 Carts.js->Main.js: return html button string
-Carts.js->DOM: Listen for changeEvent
+Govenors.js->DOM: Send changeEvent "change"
+Govenors.js<--DOM: Return changeEvent "change"
+DOM->TransientState.js:update cart
+DOM<-Govenors.js:Re-Render page
+Facilities.js<--DOM:Return changeEvent "change"
+Facilities.js->DOM: Send changeEvent "change"
+DOM->TransientState.js:update cart
+DOM<-Facilities.js:Re-Render Page
+DOM->Minerals.js:Use selects Minerals via radio buttons\n
+DOM<-Minerals.js:listen for radio buttons
+DOM->TransientState.js:update the selected minerals
+DOM<-Main.js:re-render page
+Carts.js->DOM: Listen for purchase changeEvent
 DOM-->Carts.js:Event value change
 Carts.js->Main.js:reflect change data
 Main.js->DOM: Update cart data
 DOM->Carts.js:purchase button clicked
-Carts.js->TransientState.js: Prepare purchase for POST
+Carts.js->TransientState.js: Prepare purchase for POST/PUT
 TransientState.js->database.json: POST
-Main.js->DOM: Rerender Page
-
-
-
+Main.js->>DOM: Re-Render Page
 
