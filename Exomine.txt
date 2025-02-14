@@ -43,7 +43,8 @@ DOM<-Facilities.js:Re-Render Page
 DOM->Minerals.js:Use selects Minerals via radio buttons\n
 DOM<-Minerals.js:listen for radio buttons
 DOM->TransientState.js:update the selected minerals
-Carts.js->DOM: Listen for changeEvent
+DOM<-Main.js:re-render page
+Carts.js->DOM: Listen for purchase changeEvent
 DOM-->Carts.js:Event value change
 Carts.js->Main.js:reflect change data
 Main.js->DOM: Update cart data
