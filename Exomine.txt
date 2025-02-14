@@ -32,24 +32,24 @@ Main.js<--Minerals.js:Returns html data
 
 Main.js->Carts.js: Requests html data 
 Carts.js->Main.js: return html button string
-Govenors.js->DOM: Send changeEvent "change"
-Govenors.js<--DOM: Return changeEvent "change"
-DOM->TransientState.js:update cart
-DOM<-Govenors.js:Re-Render page
-Facilities.js<--DOM:Return changeEvent "change"
-Facilities.js->DOM: Send changeEvent "change"
-DOM->TransientState.js:update cart
-DOM<-Facilities.js:Re-Render Page
+//This is Where the User Events Start
+Govenors.js<--DOM: User selects govenor
+Govenors.js->TransientState.js:update Govenor selection
+TransientState.js->Main.js: recall render
+Main.js->>DOM: Re-Render Page
+Facilities.js<--DOM: User selects facilities
+Facilities.js->TransientState.js: update facilities selection
+TransientState.js->Main.js:recall render
+Main.js->>DOM: Re-Render Page
+//This is where the radio functionality starts
 DOM->Minerals.js:Use selects Minerals via radio buttons\n
-DOM<-Minerals.js:listen for radio buttons
-DOM->TransientState.js:update the selected minerals
-DOM<-Main.js:re-render page
-Carts.js->DOM: Listen for purchase changeEvent
-DOM-->Carts.js:Event value change
-Carts.js->Main.js:reflect change data
-Main.js->DOM: Update cart data
+Minerals.js->TransientState.js: update selected mineral
+TransientState.js->Main.js: recall render
+DOM<<-Main.js:re-render page
 DOM->Carts.js:purchase button clicked
 Carts.js->TransientState.js: Prepare purchase for POST/PUT
 TransientState.js->database.json: POST
+database.json-->TransientState.js: Resolve POST
+TransientState.js->Main.js: Recalls render
 Main.js->>DOM: Re-Render Page
 

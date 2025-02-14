@@ -1,11 +1,13 @@
 import { generateFacilitiesHTML } from "./Facilities.js"
 import { generateGovernorsHTML } from "./governors.js"
+import { mineralOptions } from './Minerals.js'
 
 const container = document.querySelector("#container")
 
 const render = async () => {
     const facilitiesHTML = await generateFacilitiesHTML()
     const governorsHTML = await generateGovernorsHTML()
+    const mineralOptionsHTML = await mineralOptions()
     const exomineHTML = `
     <h1>Solar System Marketplace</h1>
 
@@ -19,7 +21,7 @@ const render = async () => {
             </section>
 
         </article>
-
+            ${mineralOptionsHTML}
         <article class="cart">
 
             <section class="spaceCart">
