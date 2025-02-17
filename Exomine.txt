@@ -32,7 +32,7 @@ Main.js<--Minerals.js:Returns html data
 
 Main.js->Carts.js: Requests html data 
 Carts.js->Main.js: return html button string
-//This is Where the User Events Start
+//This is Where the User Events start
 Govenors.js<--DOM: User selects govenor
 Govenors.js->TransientState.js:update Govenor selection
 TransientState.js->Main.js: recall render

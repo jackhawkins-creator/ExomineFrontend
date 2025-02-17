@@ -1,6 +1,7 @@
-const state = {
+ export const state = {
     "govenorId": 0,
-    "facilityId": 0
+    "facilityId": 0,
+    "mineralId": 0
 }
 
 export const setFacility = (updatedFacilityId) => {
@@ -10,6 +11,12 @@ export const setFacility = (updatedFacilityId) => {
 }
 export const setGovernor = (updatedGovenorsId) => {
     state.govenorId = updatedGovenorsId
+    console.log(state)
+    // document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+export const setMineral = (updatedMineralId) => {
+    state.mineralId = updatedMineralId
     console.log(state)
     // document.dispatchEvent(new CustomEvent("stateChanged"))
 }

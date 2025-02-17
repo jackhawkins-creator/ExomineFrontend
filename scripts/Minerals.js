@@ -1,7 +1,9 @@
+import { setMineral } from "./TransientState.js"
+import { state } from "./TransientState.js"
 
 export const mineralOptions = async () => {
     
-    //document.addEventListener("change", handleMineralChange)
+    document.addEventListener("change", handleMineralChoice)
     
     const res = await fetch("http://localhost:8088/facilities")
     const facilities = await res.json()
@@ -12,9 +14,9 @@ export const mineralOptions = async () => {
         minerals.filter(mineral => {
             const facilitiesFind = facilities.filter(facility => facility.id)
             facilitiesFind.map(find => {
-                if(mineral.facilities.id === find.id) {
+                if(mineral.facilities.id === find.id && mineral.facilityTons > 0) {
                     if(find.active){
-                    mineralsHTML += `<div>${mineral.facilityTons} tons of ${mineral.mineral.name}</div>`
+                    mineralsHTML += `<div><input id="mineral-select" type="radio" name="mineral" value="${mineral.id}" />${mineral.facilityTons} tons of ${mineral.mineral.name}</div>`
                     } else {
                     return ""
                    }
@@ -23,4 +25,10 @@ export const mineralOptions = async () => {
         })
     return mineralsHTML
     }
+const handleMineralChoice = (changeEvent) => {
+    if (changeEvent.target.id === 'mineral-select') {
+        const mineralId = parseInt(changeEvent.target.value)
+        setMineral(mineralId)
+    }
+}
 
