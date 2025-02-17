@@ -1,4 +1,5 @@
 import { setFacility } from "./TransientState.js";
+import { state } from "./TransientState.js"
 
 export const generateFacilitiesHTML = async () => {
     try {
@@ -8,13 +9,14 @@ export const generateFacilitiesHTML = async () => {
 
         let html = `
         <div id="facilities-container">Facilities
-            <select id="facility-select"><option value="0">Choose A Facility:</option>
+            <select id="facility-select" disabled>
+                <option value="0">Choose A Facility:</option>
                 ${data.map((facility) => {
-            if (facility.active) {
-                return `<option value="${facility.id}">${facility.name}</option>`;
-            } else {
-                return '';
-            }
+                    if (facility.active) {
+                        return `<option value="${facility.id}">${facility.name}</option>`;
+                    } else {
+                        return '';
+                    }
         }).join('')}
             </select>
         </div>`;
@@ -25,6 +27,17 @@ export const generateFacilitiesHTML = async () => {
         return `<p>Error fetching facilities data: ${error.message}</p>`;
     }
 };
+
+const enableFacilityDropdown = () => {
+    const facilitySelect = document.getElementById("facility-select")
+    if (state.governorId !==0) {
+        facilitySelect.disabled = false
+    } else {
+        facilitySelect.disabled = true
+    }
+}
+
+document.addEventListener("stateChanged", enableFacilityDropdown)
 
 const attachFacilitiesListeners = (Event) => {
     if (Event.target.id === 'facility-select') {

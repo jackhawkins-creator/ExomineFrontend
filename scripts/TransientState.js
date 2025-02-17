@@ -1,5 +1,5 @@
  export const state = {
-    "govenorId": 0,
+    "governorId": 0,
     "facilityId": 0,
     "mineralId": 0
 }
@@ -9,8 +9,8 @@ export const setFacility = (updatedFacilityId) => {
     console.log(state)
     // document.dispatchEvent(new CustomEvent("stateChanged"))
 }
-export const setGovernor = (updatedGovenorsId) => {
-    state.govenorId = updatedGovenorsId
+export const setGovernor = (updatedGovernorsId) => {
+    state.governorId = updatedGovernorsId
     console.log(state)
     // document.dispatchEvent(new CustomEvent("stateChanged"))
 }
