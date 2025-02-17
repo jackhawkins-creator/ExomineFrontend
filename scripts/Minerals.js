@@ -16,7 +16,7 @@ export const mineralOptions = async () => {
             facilitiesFind.map(find => {
                 if(mineral.facilities.id === find.id && mineral.facilityTons > 0) {
                     if(find.active){
-                    mineralsHTML += `<div><input id="mineral-select" type="radio" name="mineral" value="${mineral.id}" />${mineral.facilityTons} tons of ${mineral.mineral.name}</div>`
+                    mineralsHTML += `<div><input id="mineral-select" type="radio" name="mineral" value="${mineral.id}" amount="${mineral.facilityTons}" />${mineral.facilityTons} tons of ${mineral.mineral.name}</div>`
                     } else {
                     return ""
                    }
