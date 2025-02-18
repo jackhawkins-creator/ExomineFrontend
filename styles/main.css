@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: #121212;
+    color: #e6e6e6;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background-size: 80px 80px;
+}
+
+#container {
+    width: 80%;
+    max-width: 1200px;
+    padding: 20px;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #2c3e50, #34495e);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    color: #f1f1f1;
+}
+
+h1, h2 {
+    color: #00c9ff;
+    text-shadow: 0 0 10px rgba(0, 201, 255, 0.8);
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin: 20px 0;
+}
+
+/* Sci-Fi Buttons */
+button {
+    background: linear-gradient(145deg, #00c9ff, #004d73);
+    border: 1px solid #005687;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #0092b3;
+    box-shadow: 0 0 10px rgba(0, 201, 255, 0.8);
+}
+
+/* Select Dropdown */
+select {
+    background: #121212;
+    color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+select:hover {
+    background: #333;
+}
+
+/* Layout for the options */
+article {
+    margin-bottom: 40px;
+}
+
+.choices {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+section {
+    flex: 1;
+    padding: 20px;
+    background-color: #2b3a42;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.spaceCart {
+    padding: 20px;
+    background-color: #34495e;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.spaceCart h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Mineral section */
+.mineral_options {
+    background-color: #2b3a42;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.mineral_options div {
+    padding: 10px 0;
+}
+
+.mineral_options input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Hover Effects for Sections */
+section:hover {
+    background: #212f37;
+    box-shadow: 0 4px 20px rgba(0, 201, 255, 0.7);
+}
+
+#facilities-container, #governor-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .choices {
+        flex-direction: column;
+    }
+
+    section {
+        margin-bottom: 20px;
+    }
+
+    .spaceCart {
+        margin-top: 20px;
+    }
+}

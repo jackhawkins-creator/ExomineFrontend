@@ -1,7 +1,8 @@
 import { generateFacilitiesHTML } from "./Facilities.js"
-import { generateGovernorsHTML } from "./governors.js"
+import { generateGovernorsHTML } from "./Governors.js"
 import { mineralOptions } from './Minerals.js'
 import { generateColoniesHTML } from "./Colonies.js"
+import { PurchaseSubmission } from "./Cart.js"
 const container = document.querySelector("#container")
 
 export const render = async () => {
@@ -9,6 +10,7 @@ export const render = async () => {
     const governorsHTML = await generateGovernorsHTML()
     const mineralOptionsHTML = await mineralOptions()
     const coloniesHTML = await generateColoniesHTML()
+    const buttonHTML = await PurchaseSubmission()
     
     const exomineHTML = `
     <h1>Solar System Marketplace</h1>
@@ -33,7 +35,7 @@ export const render = async () => {
         <article class="cart">
             <section class="spaceCart">
             <h2>Space Cart</h2>
-            
+            ${buttonHTML}
             </section>
 
             <section class="purchaseButton">
