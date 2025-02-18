@@ -1,4 +1,4 @@
-import { setMineral } from "./TransientState.js"
+import { setMineral, mineralsAmount } from "./TransientState.js"
 import { state } from "./TransientState.js"
 
 export const mineralOptions = async () => {
@@ -24,7 +24,7 @@ export const mineralOptions = async () => {
                 const isChecked = state.mineralId === minerals.id ? "checked" : ""
             mineralsHTML += `<h2>Facility Minerals for ${facilities.name}</h2><div><input autocomplete='on' 
                     id="mineral-select" type="radio" name="mineral" 
-                    value="${minerals.id}" amount="${minerals.facilityTons}" ${isChecked} />${minerals.facilityTons} 
+                    value="${minerals.id}" data-amount="${minerals.facilityTons}" ${isChecked} />${minerals.facilityTons} 
                     tons of ${minerals.mineral.name}</div>`
             } else {
             return ""
@@ -36,13 +36,14 @@ export const mineralOptions = async () => {
     return mineralsHTML
    }
     }
-const handleMineralChoice = (changeEvent) => {
-    if (changeEvent.target.name === "mineral") {
-        let mineralId = parseInt(changeEvent.target.value)
-        setMineral(mineralId)
-        state.mineralId = mineralId
-        }
+const handleMineralChoice = (event) => {
+        if (event.target.name === "mineral") {
+                const mineralId = parseInt(event.target.value)
+                const mineralAmount = parseInt(event.target.dataset.amount)
+                setMineral(mineralId)
+                mineralsAmount(mineralAmount)        
     }
+}
 
 document.addEventListener("stateChanged", async () => {
     const mineralChangeHTML = await mineralOptions()
