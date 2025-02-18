@@ -23,7 +23,10 @@ export const render = async () => {
             </section>
 
         </article>
-            ${mineralOptionsHTML}
+        
+        <div id="minerals-container">
+        ${mineralOptionsHTML}
+        </div>
         <div id="colonies-container">
             ${coloniesHTML}
             </div>

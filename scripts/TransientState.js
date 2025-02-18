@@ -7,18 +7,18 @@
 export const setFacility = (updatedFacilityId) => {
     state.facilityId = updatedFacilityId
     console.log(state)
-    // document.dispatchEvent(new CustomEvent("stateChanged"))
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 export const setGovernor = (updatedGovernorsId) => {
     state.governorId = updatedGovernorsId
     console.log(state)
-    // document.dispatchEvent(new CustomEvent("stateChanged"))
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 export const setMineral = (updatedMineralId) => {
     state.mineralId = updatedMineralId
     console.log(state)
-    // document.dispatchEvent(new CustomEvent("stateChanged"))
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 export const purchaseMineral = () => {
