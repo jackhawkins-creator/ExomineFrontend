@@ -88,28 +88,23 @@
     "minerals": [
         {
             "id": 1,
-            "name": "Red Mercury",
-            "quantity": 500
+            "name": "Red Mercury"
         },
         {
             "id": 2,
-            "name": "Kyber Crystals",
-            "quantity": 1200
+            "name": "Kyber Crystals"
         },
         {
             "id": 3,
-            "name": "Unobtainium",
-            "quantity": 300
+            "name": "Unobtainium"
         },
         {
             "id": 4,
-            "name": "Spice Melange",
-            "quantity": 700
+            "name": "Spice Melange"
         },
         {
             "id": 5,
-            "name": "Vibranium",
-            "quantity": 950
+            "name": "Vibranium"
         }
     ],
     "facilityMinerals": [
