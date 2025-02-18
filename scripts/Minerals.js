@@ -18,12 +18,13 @@ export const mineralOptions = async () => {
     const response = await fetch(`http://localhost:8088/facilityMinerals/${facilityId}?_expand=facilities&_expand=mineral`)
     const minerals = await response.json()
 
-
     let mineralsHTML = ""
        if(facilityId === facilities.id && minerals.facilityTons > 0) {
             if(facilities.active){ 
-            mineralsHTML += `<h2>Facility Minerals for ${facilities.name}</h2><div><input id="mineral-select" type="radio" name="mineral" 
-                    value="${minerals.id}" amount="${minerals.facilityTons}" />${minerals.facilityTons} 
+                const isChecked = state.mineralId === minerals.id ? "checked" : ""
+            mineralsHTML += `<h2>Facility Minerals for ${facilities.name}</h2><div><input autocomplete='on' 
+                    id="mineral-select" type="radio" name="mineral" 
+                    value="${minerals.id}" amount="${minerals.facilityTons}" ${isChecked} />${minerals.facilityTons} 
                     tons of ${minerals.mineral.name}</div>`
             } else {
             return ""
@@ -36,14 +37,17 @@ export const mineralOptions = async () => {
    }
     }
 const handleMineralChoice = (changeEvent) => {
-    if (changeEvent.target.id === 'mineral-select') {
-        const mineralId = parseInt(changeEvent.target.value)
+    if (changeEvent.target.name === "mineral") {
+        let mineralId = parseInt(changeEvent.target.value)
         setMineral(mineralId)
+        state.mineralId = mineralId
         }
     }
 
 document.addEventListener("stateChanged", async () => {
     const mineralChangeHTML = await mineralOptions()
     const mineralsContainer = document.getElementById("minerals-container")
-    mineralsContainer.innerHTML = mineralChangeHTML;
+    mineralsContainer.innerHTML = mineralChangeHTML
+    
+    
 })
