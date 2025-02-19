@@ -1,4 +1,6 @@
+
 import { setMineral, mineralsAmount, state } from "./TransientState.js"
+
 
 export const mineralOptions = async () => {
     let facilityId = state.facilityId
@@ -9,9 +11,11 @@ export const mineralOptions = async () => {
     } else {
         document.addEventListener("change", handleMineralChoice)
 
+
         // Fetching the selected facility's data
         const res = await fetch(`http://localhost:8088/facilities/${facilityId}`)
         const facilityData = await res.json()  // Note: this contains information about the facility itself
+
         
         // Fetching the minerals available at this facility
         const response = await fetch(`http://localhost:8088/facilityMinerals?facilitiesId=${facilityId}&_expand=mineral`)
@@ -48,11 +52,13 @@ export const mineralOptions = async () => {
 }
 
 const handleMineralChoice = (event) => {
+
     if (event.target.name === "mineral") {
         const selectedMineralId = parseInt(event.target.value);
         const mineralAmount = parseInt(event.target.dataset.amount);
         setMineral(selectedMineralId);  // Update the mineralId in the state
         mineralsAmount(mineralAmount); // Update the mineral amount in the state
+
     }
 };
 

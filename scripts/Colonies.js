@@ -1,4 +1,4 @@
-import { setGovernor, state } from './TransientState.js';
+import { setGovernor, colonyTons, state } from './TransientState.js';
 
 const coloniesContainer = document.getElementById('colonies-container'); 
 
@@ -14,6 +14,7 @@ export const generateColoniesHTML = async () => {
     const governorResponse = await fetch(governorUrl);
     if (!governorResponse.ok) return '<h2>Error fetching governor data</h2>';
     const governorData = await governorResponse.json();
+    document.addEventListener("change", handleTonAmount)
 
     if (!governorData.colony) return '<h2>Governor has no assigned colony</h2>';
 
@@ -30,7 +31,7 @@ export const generateColoniesHTML = async () => {
 
     // Generate the HTML for the minerals
     const mineralHTML = mineralsData.map(mineralEntry => {
-        return `<p>${mineralEntry.mineral.name}: ${mineralEntry.colonyTons} tons</p>`;
+        return `<p id="minerals-amounts" value="${mineralEntry.colonyTons}">${mineralEntry.mineral.name}: ${mineralEntry.colonyTons} tons</p>`;
     }).join('');
 
     // Generate the header HTML with the colony name
@@ -44,3 +45,10 @@ document.addEventListener('stateChanged', async () => {
     const coloniesContainer = document.getElementById('colonies-container');
     coloniesContainer.innerHTML = coloniesHTML;
 });
+
+const handleTonAmount = (Event) => {
+    if (Event.target.id === 'minerals-amounts') {
+        const mineralAmount = parseInt(Event.target.value)
+        colonyTons(mineralAmount);
+    }
+};
