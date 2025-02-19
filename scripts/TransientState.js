@@ -53,7 +53,6 @@ export const purchaseMineral = async () => {
         return;
     }
 
-    // Fetch existing data
     const colonyItemsResponse = await fetch(`http://localhost:8088/colonyMinerals`);
     const facilityItemsResponse = await fetch(`http://localhost:8088/facilityMinerals`);
     
@@ -62,7 +61,6 @@ export const purchaseMineral = async () => {
 
     console.log("Facility Minerals Data:", facilityItems);
 
-    // Fix: Use "facilitiesId" instead of "facilityId"
     const facilityMineralEntry = facilityItems.find(entry => entry.facilitiesId === facilityId && entry.mineralId === mineralId);
 
     if (!facilityMineralEntry) {
@@ -79,7 +77,6 @@ export const purchaseMineral = async () => {
         return;
     }
 
-    // Find existing colonyMineral entry
     const colonyMineralEntry = colonyItems.find(entry => entry.colonyId === colonyId && entry.mineralId === mineralId);
     let updatedColonyTons = colonyMineralEntry ? colonyMineralEntry.colonyTons + 1 : 1;
 
@@ -105,7 +102,6 @@ export const purchaseMineral = async () => {
         });
     }
 
-    // Update facilityMineral entry (PATCH)
     const updatedFacilityTons = facilityMineralEntry.facilityTons - 1;
     await fetch(`http://localhost:8088/facilityMinerals/${facilityMineralEntry.id}`, {
         method: "PATCH",
