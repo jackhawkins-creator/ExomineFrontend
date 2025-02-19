@@ -16,6 +16,7 @@ export const PurchaseSubmission = async () => {
     if (selectedMineral === 0 || selectedFacility === 0) {
         return `
             <div>
+                <h2>Space Cart</h2>
                 <button id='purchase' disabled>Purchase Mineral</button>
             </div>
         `

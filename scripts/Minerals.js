@@ -1,5 +1,5 @@
 
-import { setMineral, mineralsAmount, state } from "./TransientState.js"
+import { setMineral, facilityAmount, state } from "./TransientState.js"
 
 
 export const mineralOptions = async () => {
@@ -57,7 +57,7 @@ const handleMineralChoice = (event) => {
         const selectedMineralId = parseInt(event.target.value);
         const mineralAmount = parseInt(event.target.dataset.amount);
         setMineral(selectedMineralId);  // Update the mineralId in the state
-        mineralsAmount(mineralAmount); // Update the mineral amount in the state
+        facilityAmount(mineralAmount); // Update the mineral amount in the state
 
     }
 };
