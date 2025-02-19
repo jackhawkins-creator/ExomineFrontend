@@ -1,5 +1,4 @@
-import { setFacility } from "./TransientState.js";
-import { state } from "./TransientState.js"
+import { setFacility, state } from "./TransientState.js";
 
 export const generateFacilitiesHTML = async () => {
     try {

@@ -14,18 +14,14 @@ export const render = async () => {
     
     const exomineHTML = `
     <h1>Solar System Marketplace</h1>
-
         <article class="choices">
             <section class="govenors_options">
                 ${governorsHTML}
             </section>
-
             <section class="facilities_options">
                 ${facilitiesHTML}
             </section>
-
         </article>
-        
         <div id="minerals-container">
         ${mineralOptionsHTML}
         </div>
