@@ -2,10 +2,6 @@ import { mineralOptions } from './Minerals.js'
 import { generateColoniesHTML } from './Colonies.js'
 import { purchaseMineral, state } from "./TransientState.js"
 
-let selectedMineral = ""  // Used to track selected mineral for the cart
-
-// Handle click events for purchase button
-
 // Function to render the purchase button & message
 export const PurchaseSubmission = async () => {
     //get current user-selected mineral & facility ids
@@ -53,7 +49,6 @@ document.addEventListener("click", async (clickEvent) => {
         generateColoniesHTML()
         mineralOptions()
         PurchaseSubmission()
-        
     }
 }    
 )

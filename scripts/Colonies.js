@@ -1,6 +1,5 @@
-import { setGovernor, colonyTons, state } from './TransientState.js';
-
-const coloniesContainer = document.getElementById('colonies-container'); 
+import { colonyTons, state } from './TransientState.js';
+ document.getElementById('colonies-container'); 
 
 export const generateColoniesHTML = async () => {
     const governorId = state.governorId; 

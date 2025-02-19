@@ -20,7 +20,6 @@ export const generateGovernorsHTML = async() => {
 
         return html
 }
-
 const handleGovernorChoice = (changeEvent) => {
     if (changeEvent.target.id === 'governor-select') {
         const selectedOption = changeEvent.target.selectedOptions[0];
