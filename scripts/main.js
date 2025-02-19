@@ -34,7 +34,6 @@ export const render = async () => {
             </div>
         <article class="cart">
             <section class="spaceCart">
-            <h2>Space Cart</h2>
             ${buttonHTML}
             </section>
         </article>
