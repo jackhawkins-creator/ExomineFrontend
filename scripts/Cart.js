@@ -5,17 +5,9 @@ import { purchaseMineral, state } from "./TransientState.js"
 let selectedMineral = ""  // Used to track selected mineral for the cart
 
 // Handle click events for purchase button
-const handlePurchaseMineralClick = async (clickEvent) => {
-    if (clickEvent.target.id === "purchase") {
-        // Call purchase logic when the button is clicked
-        purchaseMineral(selectedMineral)
-    }
-}
 
 // Function to render the purchase button & message
 export const PurchaseSubmission = async () => {
-    document.addEventListener("click", handlePurchaseMineralClick) // Listen for purchase button click
-
     //get current user-selected mineral & facility ids
     let selectedMineral = state.mineralId
     let selectedFacility = state.facilityId
@@ -57,6 +49,10 @@ document.addEventListener("click", async (clickEvent) => {
     const clickedItem = clickEvent.target
     if (clickedItem.id === "purchase") {
         purchaseMineral()
+        generateColoniesHTML()
+        mineralOptions()
+        PurchaseSubmission()
+        
     }
 }    
 )
