@@ -1,3 +1,5 @@
+import { mineralOptions } from './Minerals.js'
+import { generateColoniesHTML } from './Colonies.js'
 import { purchaseMineral, state } from "./TransientState.js"
 
 let selectedMineral = ""  // Used to track selected mineral for the cart
