@@ -1,4 +1,4 @@
-import { setMineral, mineralsAmount } from "./TransientState.js"
+import { setMineral, facilityAmount } from "./TransientState.js"
 import { state } from "./TransientState.js"
 
 export const mineralOptions = async () => {
@@ -24,7 +24,7 @@ export const mineralOptions = async () => {
                 const isChecked = state.mineralId === minerals.id ? "checked" : ""
             mineralsHTML += `<h2>Facility Minerals for ${facilities.name}</h2><div><input autocomplete='on' 
                     id="mineral-select" type="radio" name="mineral" 
-                    value="${minerals.id}" data-amount="${minerals.facilityTons}" ${isChecked} />${minerals.facilityTons} 
+                    value="${minerals.id}" data-facility="${minerals.facilityTons}" ${isChecked} />${minerals.facilityTons} 
                     tons of ${minerals.mineral.name}</div>`
             } else {
             return ""
@@ -39,9 +39,9 @@ export const mineralOptions = async () => {
 const handleMineralChoice = (event) => {
         if (event.target.name === "mineral") {
                 const mineralId = parseInt(event.target.value)
-                const mineralAmount = parseInt(event.target.dataset.amount)
+                const facilityAmountTons = parseInt(event.target.dataset.facility)
                 setMineral(mineralId)
-                mineralsAmount(mineralAmount)        
+                facilityAmount(facilityAmountTons)        
     }
 }
 

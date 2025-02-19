@@ -1,5 +1,5 @@
 import { generateFacilitiesHTML } from "./Facilities.js"
-import { generateGovernorsHTML } from "./Governors.js"
+import { generateGovernorsHTML } from "./governors.js"
 import { mineralOptions } from './Minerals.js'
 import { generateColoniesHTML } from "./Colonies.js"
 import { PurchaseSubmission } from "./Cart.js"
@@ -36,10 +36,6 @@ export const render = async () => {
             <section class="spaceCart">
             <h2>Space Cart</h2>
             ${buttonHTML}
-            </section>
-
-            <section class="purchaseButton">
-                      
             </section>
         </article>
     `
