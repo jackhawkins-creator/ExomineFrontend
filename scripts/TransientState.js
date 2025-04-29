@@ -68,7 +68,7 @@ export const purchaseMineral = async () => {
             })
         });
     }
-    const facilityMineralEntry = facilityItems.find(entry => entry.facilitiesId === facilityId && entry.mineralId === mineralId)
+    const facilityMineralEntry = facilityItems.find(entry => entry.facilityId === facilityId && entry.mineralId === mineralId)
     const updatedFacilityTons = facilityMineralEntry.facilityTons - 1;
     await fetch(`http://localhost:5223/api/facilityMinerals/${facilityMineralEntry.id}`, {
         method: "PATCH",
