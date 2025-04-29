@@ -9,24 +9,24 @@ export const generateColoniesHTML = async () => {
     }
 
     // Fetch governor and expand colony data
-    const governorUrl = `http://localhost:5223/api/governors/${governorId}?_expand=colony`;
+    const governorUrl = `http://localhost:5223/api/governors/${governorId}?expand=colony`;
     const governorResponse = await fetch(governorUrl);
     if (!governorResponse.ok) return '<h2>Error fetching governor data</h2>';
     const governorData = await governorResponse.json();
     document.addEventListener("change", handleTonAmount)
 
-    if (!governorData.colony) return '<h2>Governor has no assigned colony</h2>';
+    if (!governorData.colonies) return '<h2>Governor has no assigned colony</h2>';
 
-    const colonyId = governorData.colony.id;
+    const colonyId = governorData.colonies[0].id;
     
     // Fetch minerals for the colony
-    const mineralsUrl = `http://localhost:5223/api/colonyMinerals?colonyId=${colonyId}&_expand=mineral`;
+    const mineralsUrl = `http://localhost:5223/api/colonyMinerals?colonyId=${colonyId}&expand=mineral`;
     const mineralsResponse = await fetch(mineralsUrl);
     if (!mineralsResponse.ok) return '<h2>Error fetching colony minerals</h2>';
     const mineralsData = await mineralsResponse.json();
 
     // Get the colony name
-    const colonyName = governorData.colony.name;
+    const colonyName = governorData.colonies[0].name;
 
     // Generate the HTML for the minerals
     const mineralHTML = mineralsData.map(mineralEntry => {
