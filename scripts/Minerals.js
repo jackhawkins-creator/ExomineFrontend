@@ -13,7 +13,7 @@ export const mineralOptions = async () => {
         const res = await fetch(`http://localhost:5223/api/facilities/${facilityId}`)
         const facilityData = await res.json()  
 
-        const response = await fetch(`http://localhost:5223/api/facilityMinerals?facilitiesId=${facilityId}&_expand=mineral`)
+        const response = await fetch(`http://localhost:5223/api/facilityMinerals?facilityId=${facilityId}&expand=mineral`)
         const mineralsData = await response.json()
 
         let mineralsHTML = ""
