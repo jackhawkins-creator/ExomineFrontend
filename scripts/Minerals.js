@@ -10,10 +10,10 @@ export const mineralOptions = async () => {
     } else {
         document.addEventListener("change", handleMineralChoice)
 
-        const res = await fetch(`http://localhost:8088/facilities/${facilityId}`)
+        const res = await fetch(`http://localhost:5223/api/facilities/${facilityId}`)
         const facilityData = await res.json()  
 
-        const response = await fetch(`http://localhost:8088/facilityMinerals?facilitiesId=${facilityId}&_expand=mineral`)
+        const response = await fetch(`http://localhost:5223/api/facilityMinerals?facilitiesId=${facilityId}&_expand=mineral`)
         const mineralsData = await response.json()
 
         let mineralsHTML = ""

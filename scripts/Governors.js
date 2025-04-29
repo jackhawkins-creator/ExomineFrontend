@@ -1,7 +1,7 @@
 import { setGovernor, setColony } from './TransientState.js'
 
 export const generateGovernorsHTML = async() => {
-    const response = await fetch('http://localhost:8088/governors')
+    const response = await fetch('http://localhost:5223/api/governors')
     const data = await response.json()
     document.addEventListener("change", handleGovernorChoice)
 

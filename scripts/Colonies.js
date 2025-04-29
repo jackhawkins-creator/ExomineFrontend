@@ -9,7 +9,7 @@ export const generateColoniesHTML = async () => {
     }
 
     // Fetch governor and expand colony data
-    const governorUrl = `http://localhost:8088/governors/${governorId}?_expand=colony`;
+    const governorUrl = `http://localhost:5223/api/governors/${governorId}?_expand=colony`;
     const governorResponse = await fetch(governorUrl);
     if (!governorResponse.ok) return '<h2>Error fetching governor data</h2>';
     const governorData = await governorResponse.json();
@@ -20,7 +20,7 @@ export const generateColoniesHTML = async () => {
     const colonyId = governorData.colony.id;
     
     // Fetch minerals for the colony
-    const mineralsUrl = `http://localhost:8088/colonyMinerals?colonyId=${colonyId}&_expand=mineral`;
+    const mineralsUrl = `http://localhost:5223/api/colonyMinerals?colonyId=${colonyId}&_expand=mineral`;
     const mineralsResponse = await fetch(mineralsUrl);
     if (!mineralsResponse.ok) return '<h2>Error fetching colony minerals</h2>';
     const mineralsData = await mineralsResponse.json();

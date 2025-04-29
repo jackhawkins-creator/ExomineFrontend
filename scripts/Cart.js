@@ -19,11 +19,11 @@ export const PurchaseSubmission = async () => {
     }
 
     // Fetch mineral name
-    const mineralResponse = await fetch(`http://localhost:8088/minerals/${selectedMineral}`)
+    const mineralResponse = await fetch(`http://localhost:5223/api/minerals/${selectedMineral}`)
     const mineralData = await mineralResponse.json()
 
     // Fetch facility name
-    const facilityResponse = await fetch(`http://localhost:8088/facilities/${selectedFacility}`)
+    const facilityResponse = await fetch(`http://localhost:5223/api/facilities/${selectedFacility}`)
     const facilityData = await facilityResponse.json() //note: we're getting objects back here
 
     const message = `1 ton of ${mineralData.name} from ${facilityData.name}`

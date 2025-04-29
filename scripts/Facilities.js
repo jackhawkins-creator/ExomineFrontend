@@ -2,7 +2,7 @@ import { setFacility, state } from "./TransientState.js";
 
 export const generateFacilitiesHTML = async () => {
     try {
-        const response = await fetch('http://localhost:8088/facilities');
+        const response = await fetch('http://localhost:5223/api/facilities');
         const data = await response.json();
         document.addEventListener("change", attachFacilitiesListeners)
 

@@ -40,15 +40,15 @@ export const purchaseMineral = async () => {
     const colonyId = state.colonyId;
     const mineralId = state.mineralId;
 
-    const colonyItemsResponse = await fetch(`http://localhost:8088/colonyMinerals`);
-    const facilityItemsResponse = await fetch(`http://localhost:8088/facilityMinerals`);
+    const colonyItemsResponse = await fetch(`http://localhost:5223/api/colonyMinerals`);
+    const facilityItemsResponse = await fetch(`http://localhost:5223/api/facilityMinerals`);
     const colonyItems = await colonyItemsResponse.json();
     const facilityItems = await facilityItemsResponse.json();
    
     const colonyMineralEntry = colonyItems.find(entry => entry.colonyId === colonyId && entry.mineralId === mineralId)
     let updatedColonyTons = colonyMineralEntry ? colonyMineralEntry.colonyTons + 1 : 1;
     if (colonyMineralEntry) {
-        await fetch(`http://localhost:8088/colonyMinerals/${colonyMineralEntry.id}`, {
+        await fetch(`http://localhost:5223/api/colonyMinerals/${colonyMineralEntry.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -58,7 +58,7 @@ export const purchaseMineral = async () => {
             })
         });
     } else {
-        await fetch(`http://localhost:8088/colonyMinerals`, {
+        await fetch(`http://localhost:5223/api/colonyMinerals`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -70,7 +70,7 @@ export const purchaseMineral = async () => {
     }
     const facilityMineralEntry = facilityItems.find(entry => entry.facilitiesId === facilityId && entry.mineralId === mineralId)
     const updatedFacilityTons = facilityMineralEntry.facilityTons - 1;
-    await fetch(`http://localhost:8088/facilityMinerals/${facilityMineralEntry.id}`, {
+    await fetch(`http://localhost:5223/api/facilityMinerals/${facilityMineralEntry.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
