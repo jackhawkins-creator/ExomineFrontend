@@ -31,3 +31,7 @@ export const patchFacilityMineral = (id, data) =>
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
   });
+
+export const waitOneHour = () => {
+  return fetch(`${API}/facilityMinerals/waitOneHour`, { method: "PUT" }).then(res => res.json())
+};

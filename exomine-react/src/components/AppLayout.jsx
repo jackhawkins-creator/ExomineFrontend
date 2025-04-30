@@ -4,6 +4,7 @@ import Facilities from "./Facilities";
 import Minerals from "./Minerals";
 import Colonies from "./Colonies";
 import Cart from "./Cart";
+import { waitOneHour } from "../services/api";
 
 const AppLayout = () => {
   const [governorId, setGovernorId] = useState(0);
@@ -33,6 +34,7 @@ const AppLayout = () => {
         triggerColonyRefresh={() => setColonyRefreshTrigger(prev => prev + 1)}
         triggerFacilityRefresh={() => setFacilityRefreshTrigger(prev => prev + 1)}
       />
+      <button onClick={() => {waitOneHour().then(() => {setFacilityRefreshTrigger(prev => prev + 1)})}}>Wait One Hour To Increase Facility Resources</button>
     </>
   );
 };
