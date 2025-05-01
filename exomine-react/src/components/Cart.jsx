@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import {
   fetchMineralById,
-  fetchFacilityById,
   fetchColonyMinerals,
   fetchFacilityMinerals,
   putColonyMineral,
   postColonyMineral,
   patchFacilityMineral,
+  updateColony,
+  updateFacility,
+  fetchColonyById,
+  fetchFacilityById
 } from "../services/api";
 
 const Cart = ({
@@ -16,7 +19,8 @@ const Cart = ({
   setColonyTons,
   setFacilityTons,
   triggerColonyRefresh,
-  triggerFacilityRefresh
+  triggerFacilityRefresh,
+  selectedQuantity
 }) => {
   const [mineralName, setMineralName] = useState("");
   const [facilityName, setFacilityName] = useState("");
@@ -40,47 +44,70 @@ const Cart = ({
       (entry) => entry.colonyId === colonyId && entry.mineralId === mineralId
     );
     let updatedColonyTons = colonyMineralEntry
-      ? colonyMineralEntry.colonyTons + 1
-      : 1;
+      ? colonyMineralEntry.colonyTons + selectedQuantity
+      : selectedQuantity;
 
-    if (colonyMineralEntry) {
-      await putColonyMineral(colonyMineralEntry.id, {
-        colonyId,
-        mineralId,
-        colonyTons: updatedColonyTons,
-      });
-    } else {
-      await postColonyMineral({
-        colonyId,
-        mineralId,
-        colonyTons: updatedColonyTons,
-      });
-    }
+    
+        const facilityMineralEntry = facilityItems.find(
+          (entry) => entry.facilityId === facilityId && entry.mineralId === mineralId
+        );
+    
+        if (!facilityMineralEntry) {
+          alert("Mineral not available at this facility.");
+          return;
+        }
+    
+        const mineralPrice = parseFloat(facilityMineralEntry.mineralPrice);
+        const totalPrice = mineralPrice * selectedQuantity;
+    
+       
+       
+    
+        if (colonyMineralEntry) {
+          await putColonyMineral(colonyMineralEntry.id, {
+            colonyId,
+            mineralId,
+            colonyTons: updatedColonyTons,
+          });
+        } else {
+          await postColonyMineral({
+            colonyId,
+            mineralId,
+            colonyTons: updatedColonyTons,
+          });
+        }
+    
+        const updatedFacilityTons = facilityMineralEntry.facilityTons - selectedQuantity;
+    
+        await patchFacilityMineral(facilityMineralEntry.id, {
+          facilityTons: updatedFacilityTons,
+        });
+    
+        setColonyTons(updatedColonyTons);
+        setFacilityTons(updatedFacilityTons);
+    
+      
 
-    const facilityMineralEntry = facilityItems.find(
-      (entry) =>
-        entry.facilityId === facilityId && entry.mineralId === mineralId
-    );
-    const updatedFacilityTons = facilityMineralEntry.facilityTons - 1;
+        const colony = await fetchColonyById(colonyId);
+        const facility = await fetchFacilityById(facilityId);
+    
+        const updatedFacilityCurrency = parseFloat(facility.currency) + parseFloat(totalPrice)
+        await updateFacility(facilityId, { ...facility, currency: updatedFacilityCurrency });
+    
+        const updatedColonyCurrency = parseFloat(colony.currency) - parseFloat(totalPrice);
+        await updateColony(colonyId, { ...colony, currency: updatedColonyCurrency });
 
-    await patchFacilityMineral(facilityMineralEntry.id, {
-      facilityTons: updatedFacilityTons,
-    });
-
-    setColonyTons(updatedColonyTons);
-    setFacilityTons(updatedFacilityTons);
-
-    triggerColonyRefresh();
-    triggerFacilityRefresh();
-  };
-
+        triggerFacilityRefresh();
+        triggerColonyRefresh();
+        
+      };
   return (
     <article className="cart">
       <section className="spaceCart">
         <h2>Space Cart</h2>
         {!disabled && (
           <p>
-            1 ton of <strong>{mineralName}</strong> from{" "}
+            {selectedQuantity} ton of <strong>{mineralName}</strong> from{" "}
             <strong>{facilityName}</strong>
           </p>
         )}
