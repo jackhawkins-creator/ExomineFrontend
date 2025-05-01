@@ -5,6 +5,11 @@ const Colonies = ({ colonyId, refreshTrigger }) => {
   const [colonyName, setColonyName] = useState("");
   const [colonyCurrency, setColonyCurrency] = useState(0); // Add state for currency
   const [minerals, setMinerals] = useState([]);
+  // const [colonies, setColonies] = useState([]) // This state is not used in the current rendering
+
+  useEffect(() => {
+   
+  }, []);
 
 
   useEffect(() => {
@@ -26,16 +31,18 @@ const Colonies = ({ colonyId, refreshTrigger }) => {
         return;
       }
 
-
+      // Fetch the specific governor data which includes the colony expansion
+      // This is slightly inefficient if you only need the colony, but matches the current API usage pattern.
+      // A direct fetch to /api/colonies/{colonyId} could also work if that endpoint is available and includes currency.
+      // Based on the provided API code, /api/colonies/{id} *does* return currency, which would be more direct.
+      // Let's use the existing governor fetch as it's what's currently implemented to get the colony name.
       const colonyResponse = await fetch(`http://localhost:5223/api/governors/${governor.id}`);
       const governorData = await colonyResponse.json();
 
       if (governorData?.colonies?.length > 0) {
         const colony = governorData.colonies[0];
         setColonyName(colony.name);
-        const parsedCurrency = parseFloat(colony.currency);
-       
-        setColonyCurrency(parsedCurrency); // Set the currency state
+        setColonyCurrency(colony.currency); // Set the currency state
       } else {
          setColonyName("");
          setColonyCurrency(0);
@@ -59,7 +66,7 @@ const Colonies = ({ colonyId, refreshTrigger }) => {
   return (
     <section className="colony-info">
       <h2>{colonyName} Minerals</h2>
-      <p>Currency: {colonyCurrency}</p> 
+      <p>Currency: {colonyCurrency}</p> {/* Display the colony currency */}
       {minerals.length === 0 ? (
         <p>No minerals available</p>
       ) : (

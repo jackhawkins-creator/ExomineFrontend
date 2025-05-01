@@ -15,18 +15,25 @@ const AppLayout = () => {
   const [facilityTons, setFacilityTons] = useState(0);
   const [colonyRefreshTrigger, setColonyRefreshTrigger] = useState(0);
   const [facilityRefreshTrigger, setFacilityRefreshTrigger] = useState(0);
+  const [selectedCartQuantity, setSelectedCartQuantity] = useState(1);
 
   return (
     <>
       <h1>Solar System Marketplace</h1>
       <article className="choices">
         <Governors setGovernorId={setGovernorId} setColonyId={setColonyId} />
-        <Facilities setFacilityId={setFacilityId} governorId={governorId} />
+        <Facilities setFacilityId={setFacilityId} governorId={governorId} refreshTrigger={facilityRefreshTrigger} />
       </article>
-      <Minerals facilityId={facilityId} setMineralId={setMineralId} refreshTrigger={facilityRefreshTrigger} />
+      <Minerals
+        facilityId={facilityId}
+        setMineralId={setMineralId}
+        refreshTrigger={facilityRefreshTrigger}
+        setSelectedCartQuantity={setSelectedCartQuantity}
+      />
       <Colonies colonyId={colonyId} refreshTrigger={colonyRefreshTrigger} />
       <Cart
         mineralId={mineralId}
+        selectedQuantity={selectedCartQuantity}
         facilityId={facilityId}
         colonyId={colonyId}
         setColonyTons={setColonyTons}
