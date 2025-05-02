@@ -35,9 +35,13 @@ const Cart = ({
     } else {
       setDisabled(true);
     }
+ 
   }, [mineralId, facilityId]);
 
   const handlePurchase = async () => {
+
+   
+
     const colonyItems = await fetchColonyMinerals();
     const facilityItems = await fetchFacilityMinerals();
 
@@ -48,11 +52,11 @@ const Cart = ({
       ? colonyMineralEntry.colonyTons + selectedQuantity
       : selectedQuantity;
 
-
     const facilityMineralEntry = facilityItems.find(
       (entry) => entry.facilityId === facilityId && entry.mineralId === mineralId
     );
 
+   
     if (!facilityMineralEntry) {
       alert("Mineral not available at this facility.");
       return;
@@ -61,6 +65,7 @@ const Cart = ({
     const mineralPrice = parseFloat(facilityMineralEntry.mineralPrice);
     let totalPrice = mineralPrice * selectedQuantity;
     totalPrice = bodyGuards ? totalPrice + 15 : totalPrice
+
 
     if (colonyMineralEntry) {
       await putColonyMineral(colonyMineralEntry.id, {
@@ -82,27 +87,36 @@ const Cart = ({
       facilityTons: updatedFacilityTons,
     });
 
+    
     setColonyTons(updatedColonyTons);
     setFacilityTons(updatedFacilityTons);
 
-
-
     const colony = await fetchColonyById(colonyId);
     const facility = await fetchFacilityById(facilityId);
+
+    if(totalPrice > colony.currency){
+      alert("Not enough balance for purchase")
+      return
+    }
 
     const updatedFacilityCurrency = parseFloat(facility.currency) + parseFloat(totalPrice)
     await updateFacility(facilityId, { ...facility, currency: updatedFacilityCurrency });
 
     const updatedColonyCurrency = parseFloat(colony.currency) - parseFloat(totalPrice);
     await updateColony(colonyId, { ...colony, currency: updatedColonyCurrency });
+    
+
 
     triggerFacilityRefresh();
     triggerColonyRefresh();
     setBodyGuards(false)
+
   };
 
+  
+
   const pirates = async () => {
-    alert("PIRATES!!!!!")
+    
 
     const facilityItems = await fetchFacilityMinerals();
 
@@ -113,16 +127,28 @@ const Cart = ({
     const mineralPrice = parseFloat(facilityMineralEntry.mineralPrice);
     const totalPrice = mineralPrice * selectedQuantity;
 
+    if(facilityMineralEntry.facilityTons === 0) {
+      alert("No more minerals to purchase.")
+      return
+    }
+
     const updatedFacilityTons = facilityMineralEntry.facilityTons - selectedQuantity;
 
     await patchFacilityMineral(facilityMineralEntry.id, {
       facilityTons: updatedFacilityTons,
     });
 
+
+
     setFacilityTons(updatedFacilityTons);
 
     const colony = await fetchColonyById(colonyId);
     const facility = await fetchFacilityById(facilityId);
+
+    if(totalPrice > colony.currency){
+      alert("Not enough balance for purchase")
+      return
+    }
 
     const updatedFacilityCurrency = parseFloat(facility.currency) + parseFloat(totalPrice)
     await updateFacility(facilityId, { ...facility, currency: updatedFacilityCurrency });
@@ -130,8 +156,11 @@ const Cart = ({
     const updatedColonyCurrency = parseFloat(colony.currency) - parseFloat(totalPrice);
     await updateColony(colonyId, { ...colony, currency: updatedColonyCurrency });
 
+    alert("PIRATES!!!!!")
+
     triggerFacilityRefresh();
     triggerColonyRefresh();
+
   }
 
   return (
@@ -144,9 +173,9 @@ const Cart = ({
             <strong>{facilityName}</strong>
           </p>
         )}
-        <button disabled={disabled} onClick={() => { bodyGuards ? handlePurchase() : ((Math.floor(Math.random() * 3) + 1) == 1 ? handlePurchase() : pirates())}}>
+        <button disabled={disabled} onClick={() => {bodyGuards ? handlePurchase() : ((Math.floor(Math.random() * 3) + 1) == 1 ? handlePurchase() : pirates())}}>
           Purchase Mineral
-        </button>
+        </button> 
         <button onClick={() => {setBodyGuards(!bodyGuards)}}>Hired Body Guards: {bodyGuards ? "True +15 additional credits on purchase" : "False"} </button>
       </section>
     </article>

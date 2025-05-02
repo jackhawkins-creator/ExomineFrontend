@@ -7,6 +7,7 @@ const Colonies = ({ colonyId, refreshTrigger }) => {
   const [minerals, setMinerals] = useState([]);
 
 
+
   useEffect(() => {
     const loadColonyData = async () => {
       if (!colonyId) {
@@ -60,7 +61,7 @@ const Colonies = ({ colonyId, refreshTrigger }) => {
     <section className="colony-info">
       <h2>{colonyName} Minerals</h2>
       <p>Currency: {colonyCurrency}</p> 
-      {minerals.length === 0 ? (
+      {minerals.length === 0  ? (
         <p>No minerals available</p>
       ) : (
         minerals.map((mineral) => (
