@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { fetchColonyMinerals, fetchGovernors, fetchColonies } from "../services/api"; // fetchColonies might not be strictly necessary here but keep it for now
+import { fetchColonyMinerals, fetchGovernors, fetchColonies } from "../services/api"; 
 
 const Colonies = ({ colonyId, refreshTrigger }) => {
   const [colonyName, setColonyName] = useState("");
-  const [colonyCurrency, setColonyCurrency] = useState(0); // Add state for currency
+  const [colonyCurrency, setColonyCurrency] = useState(0);
   const [minerals, setMinerals] = useState([]);
 
 
